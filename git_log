@@ -1,0 +1,554 @@
+
+
+
+sudo apt-get install git
+
+git --version
+
+git config --global user.name "Mirpribili"
+git config --global user.email "mirpribili@ya.ru"
+git config -l
+
+ls -la
+
+cd home/kde/
+cat .gitconfig
+
+
+mkdir project_git_repository
+cd project_git_repository
+git init .
+Инициализирован пустой репозиторий Git в /home/kde/project_git_repository/.git/
+
+git status
+
+echo "source file" > file1.txt
+echo "source file" > file2.txt
+
+git add *
+
+используйте «git rm --cached <файл>…», чтобы убрать из индекса)
+
+git commit -m "My Initial commit, this is Version1.0"
+
+
+echo "source file3" > file3.txt
+
+git add .
+
+
+rm file1.txty
+git add .
+git commit -m "Added file3 and update file1"
+
+# ----------------------------- история изменений .gitignore
+# ----------------------------- и восстановлдение файлов
+
+
+git log
+git log -1
+git log -1 -p подробно глянуть что было в снимке
+
+echo "aa" > file5.txt
+echo " bb" >> file4.txt
+
+git add .
+
+git commit -m "few changes"
+
+
+cat file4.txt
+
+git checkout -- file4.txt откат изменений?
+
+git diff --staged
+
+echo "aa" > zzz.log
+
+mkdir logs
+cp zzz.log logs/
+
+echo "*.log" >.gitignore
+
+#-----------------------8.Git - Загрузка проекта на GitHub - git push
+git clone https://github.com/mirpribili/my_test_push.git
+cd my_test_push
+echo "Hello World" > file1.txt
+git status
+git add .
+git commit -m "My New Commit"
+git push origin
+    mirpribili
+    56ertyh9687t6tygfuj!
+
+#-----------------------------9.Git - Hастройка логина в GitHub через SSH Key на Linux
+ll ~/.ssh/
+
+kde@kde-f:~$ ll ~/.ssh/
+ls: невозможно получить доступ к '/home/kde/.ssh/': Нет такого файла или каталога
+kde@kde-f:~$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/kde/.ssh/id_rsa):
+Created directory '/home/kde/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/kde/.ssh/id_rsa.
+Your public key has been saved in /home/kde/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:loFGb9CZ92HjVbKK1MMb0FCeSD76HT+uxX9vcPh7Bq4 kde@kde-f
+The key's randomart image is:
++---[RSA 2048]----+
+|      o. o++. ...|
+|     . ++o.*=..o |
+|      o +.=+B+.  |
+|     . . = oo=   |
+|        S . +  . |
+|       . . . ++ .|
+|          . ..== |
+|             o.o*|
+|            Eo.+B|
++----[SHA256]-----+
+kde@kde-f:~$ ll ~/.ssh/
+итого 40
+drwx------  2 kde kde  4096 июн 11 17:21 ./
+drwx------ 26 kde kde 12288 июн 11 17:21 ../
+-rw-------  1 kde kde  1675 июн 11 17:21 id_rsa
+-rw-r--r--  1 kde kde   391 июн 11 17:21 id_rsa.pub
+kde@kde-f:~$ cat ~/.ssh/
+cat: /home/kde/.ssh/: Это каталог
+kde@kde-f:~$ ll ~/.ssh/id_rsa.pub
+-rw-r--r-- 1 kde kde 391 июн 11 17:21 /home/kde/.ssh/id_rsa.pub
+kde@kde-f:~$ cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyX25jy3NwpqAdCHn0ZAD50nYXrcBqZcGHq3lysR6kMvHvZnG7a6HJrzYhVWm+D8s+q7VRHQQztYvzc6yu0HgHYl/NYxzYTqVLnM7ZBfZbHmLfg4Fr13N6pO1Lw6iglrIZTOYa2gD1y0dkvkpsHjNQoBsZ1wEPibdHN9RodmtaUQHoF5C1char8pbRT9IuXsif3QNZ4tVA7Qrs8v7dNOMc4f34e7WO0WUSEBohSOpeAVB391pe6ktbrZAhgCA0q/qHUMWriceUw6KBz1Cfa5O2Wt0yRW7ALqVcVRyZp1UQourroa1utoffwCrFDFUyKWjrAjZqPylBAZ+45efSdu5H kde@kde-f
+kde@kde-f:~$ cd my_test_push
+bash: cd: my_test_push: Нет такого файла или каталога
+kde@kde-f:~$ cd home\my_test_push
+bash: cd: homemy_test_push: Нет такого файла или каталога
+kde@kde-f:~$
+kde@kde-f:~$ cd home\kde\my_test_push
+bash: cd: homekdemy_test_push: Нет такого файла или каталога
+kde@kde-f:~$ ls
+ git_test_push            Видео       Изображения    'Рабочий стол'
+ project_git_repository   Документы   Музыка          Шаблоны
+ vi                       Загрузки    Общедоступные
+kde@kde-f:~$ cd
+kde@kde-f:~$ ls
+ git_test_push            Видео       Изображения    'Рабочий стол'
+ project_git_repository   Документы   Музыка          Шаблоны
+ vi                       Загрузки    Общедоступные
+kde@kde-f:~$ cd git_test_push
+kde@kde-f:~/git_test_push$ ls
+my_test_push
+kde@kde-f:~/git_test_push$ cd my_test_push
+kde@kde-f:~/git_test_push/my_test_push$ git remote -v
+origin	https://github.com/mirpribili/my_test_push.git (fetch)
+origin	https://github.com/mirpribili/my_test_push.git (push)
+kde@kde-f:~/git_test_push/my_test_push$ git remote set-url origin git@github.com:mirpribili/my_test_push.git
+kde@kde-f:~/git_test_push/my_test_push$ git remote -v
+origin	git@github.com:mirpribili/my_test_push.git (fetch)
+origin	git@github.com:mirpribili/my_test_push.git (push)
+kde@kde-f:~/git_test_push/my_test_push$ git status
+На ветке master
+Ваша ветка обновлена в соответствии с «origin/master».
+
+нечего коммитить, нет изменений в рабочем каталоге
+kde@kde-f:~/git_test_push/my_test_push$ echo "test ssh" > ssh.txt
+kde@kde-f:~/git_test_push/my_test_push$ git status
+На ветке master
+Ваша ветка обновлена в соответствии с «origin/master».
+
+Неотслеживаемые файлы:
+  (используйте «git add <файл>…», чтобы добавить в то, что будет включено в коммит)
+
+	ssh.txt
+
+ничего не добавлено в коммит, но есть неотслеживаемые файлы (используйте «git add», чтобы отслеживать их)
+kde@kde-f:~/git_test_push/my_test_push$ git add .
+kde@kde-f:~/git_test_push/my_test_push$ git commit -m "Added file2"
+[master 51485a8] Added file2
+ 1 file changed, 1 insertion(+)
+ create mode 100644 ssh.txt
+kde@kde-f:~/git_test_push/my_test_push$ git push origin
+The authenticity of host 'github.com (140.82.118.3)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,140.82.118.3' (RSA) to the list of known hosts.
+Подсчет объектов: 3, готово.
+Delta compression using up to 8 threads.
+Сжатие объектов: 100% (2/2), готово.
+Запись объектов: 100% (3/3), 309 bytes | 309.00 KiB/s, готово.
+Total 3 (delta 0), reused 0 (delta 0)
+To github.com:mirpribili/my_test_push.git
+   925f70d..51485a8  master -> master
+kde@kde-f:~/git_test_push/my_test_push$
+
+
+#---------------------- 11.Git - Создание
+#---------------------- и работа с Ветвлениями - Branch
+
+
+kde@kde-f:~$ cd home/kde/[git]
+bash: cd: home/kde/[git]: Нет такого файла или каталога
+kde@kde-f:~$ cd home/kde/
+bash: cd: home/kde/: Нет такого файла или каталога
+kde@kde-f:~$ cd
+kde@kde-f:~$ ls
+ git_test_push            Видео       Изображения    'Рабочий стол'
+ project_git_repository   Документы   Музыка          Шаблоны
+ vi                       Загрузки    Общедоступные
+kde@kde-f:~$ cd Документы/
+kde@kde-f:~/Документы$ ls
+'[git]'  '[python]'   python-3.8.3-amd64.exe
+kde@kde-f:~/Документы$ cd [git]
+kde@kde-f:~/Документы/[git]$ git init branchapp
+Инициализирован пустой репозиторий Git в /home/kde/Документы/[git]/branchapp/.git/
+kde@kde-f:~/Документы/[git]$ cd branchapp
+kde@kde-f:~/Документы/[git]/branchapp$ git status
+На ветке master
+
+Еще нет коммитов
+
+нечего коммитить (создайте/скопируйте файлы, затем запустите «git add», чтобы отслеживать их)
+kde@kde-f:~/Документы/[git]/branchapp$ git branch
+kde@kde-f:~/Документы/[git]/branchapp$ echo "ver1" > index.html
+kde@kde-f:~/Документы/[git]/branchapp$ ls
+index.html
+kde@kde-f:~/Документы/[git]/branchapp$ git status
+На ветке master
+
+Еще нет коммитов
+
+Неотслеживаемые файлы:
+  (используйте «git add <файл>…», чтобы добавить в то, что будет включено в коммит)
+
+	index.html
+
+ничего не добавлено в коммит, но есть неотслеживаемые файлы (используйте «git add», чтобы отслеживать их)
+kde@kde-f:~/Документы/[git]/branchapp$ git add
+Ничего не указано, ничего не добавлено.
+Возможно, вы имели в виду «git add .»?
+kde@kde-f:~/Документы/[git]/branchapp$ git add .
+kde@kde-f:~/Документы/[git]/branchapp$ git comit m "Version1.0"
+git: «comit» не является командой git. Смотрите «git --help».
+
+Самые похожие команды:
+	commit
+kde@kde-f:~/Документы/[git]/branchapp$ git commit m "Version1.0"
+error: pathspec 'm' did not match any file(s) known to git.
+error: pathspec 'Version1.0' did not match any file(s) known to git.
+kde@kde-f:~/Документы/[git]/branchapp$ git commit -m "Version1.0"
+[master (корневой коммит) f50ec19] Version1.0
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.html
+kde@kde-f:~/Документы/[git]/branchapp$ git branch
+* master
+kde@kde-f:~/Документы/[git]/branchapp$ git log
+commit f50ec192592cb58372bb9803a29ac125d0d921ba (HEAD -> master)
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:13:18 2020 +0300
+
+    Version1.0
+kde@kde-f:~/Документы/[git]/branchapp$ echo "ver2" > index.html
+kde@kde-f:~/Документы/[git]/branchapp$ git add .
+kde@kde-f:~/Документы/[git]/branchapp$ git commit -m "version2.0"
+[master a4ff584] version2.0
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+kde@kde-f:~/Документы/[git]/branchapp$ git log
+commit a4ff584310066a42f12553bf8a45591b68e8d7e3 (HEAD -> master)
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:11 2020 +0300
+
+    version2.0
+
+commit f50ec192592cb58372bb9803a29ac125d0d921ba
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:13:18 2020 +0300
+
+    Version1.0
+kde@kde-f:~/Документы/[git]/branchapp$ echo "ver3" > index.html
+kde@kde-f:~/Документы/[git]/branchapp$ git commit -m "version3.0"
+На ветке master
+Изменения, которые не в индексе для коммита:
+	изменено:      index.html
+
+нет изменений добавленных для коммита
+kde@kde-f:~/Документы/[git]/branchapp$ git add .
+kde@kde-f:~/Документы/[git]/branchapp$ git commit -m "version3.0"
+[master d47aeb5] version3.0
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+kde@kde-f:~/Документы/[git]/branchapp$ git log
+commit d47aeb5c607a5a2dbc2fcb3ac6cc12d6f08c9e1e (HEAD -> master)
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:46 2020 +0300
+
+    version3.0
+
+commit a4ff584310066a42f12553bf8a45591b68e8d7e3
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:11 2020 +0300
+
+    version2.0
+
+commit f50ec192592cb58372bb9803a29ac125d0d921ba
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:13:18 2020 +0300
+
+    Version1.0
+kde@kde-f:~/Документы/[git]/branchapp$ git branch fix_error
+kde@kde-f:~/Документы/[git]/branchapp$ git checkout fix_error
+Переключено на ветку «fix_error»
+kde@kde-f:~/Документы/[git]/branchapp$ git branch
+* fix_error
+  master
+kde@kde-f:~/Документы/[git]/branchapp$ git checkout master
+Переключено на ветку «master»
+kde@kde-f:~/Документы/[git]/branchapp$ git branch
+  fix_error
+* master
+kde@kde-f:~/Документы/[git]/branchapp$ git branch -d fix_error
+Ветка fix_error удалена (была d47aeb5).
+kde@kde-f:~/Документы/[git]/branchapp$ версия создания ветвления 2
+версия: команда не найдена
+kde@kde-f:~/Документы/[git]/branchapp$ git checkout -d lenin_fixerror
+error: unknown switch `d'
+использование: git checkout [<опции>] <ветка>
+   или: git checkout [<опции>] [<ветка>] -- <файл>…
+
+    -q, --quiet           не выводить прогресс выполнения
+    -b <ветка>            создать и переключиться на новую ветку
+    -B <ветка>            создать/сбросить и перключиться на новую ветку
+    -l                    создать журнал ссылок для новой ветки
+    --detach              отсоединить HEAD на указанном коммите
+    -t, --track           установить информацию о вышестоящей ветке для новой ветки
+    --orphan <новая-ветка>
+                          новая ветка без родителей
+    -2, --ours            переключиться на нашу версию для не слитых файлов
+    -3, --theirs          переключиться на их версию для не слитых файлов
+    -f, --force           принудительное переключение на состояние (отбрасывает все локальные изменения)
+    -m, --merge           выполнить трехходовое слияние с новой веткой
+    --overwrite-ignore    обновить игнорируемые файлы (по умолчанию)
+    --conflict <стиль>    стиль конфликтов слияния (merge или diff3)
+    -p, --patch           интерактивный выбор блоков
+    --ignore-skip-worktree-bits
+                          не ограничивать спецификаторы пути только частичными записями
+    --ignore-other-worktrees
+                          не проверять, что другое дерево уже содержит указанную ссылку
+    --recurse-submodules[=<checkout>]
+                          control recursive updating of submodules
+    --progress            принудительно выводить прогресс
+
+kde@kde-f:~/Документы/[git]/branchapp$ git checkout -b lenin_fixerror
+Переключено на новую ветку «lenin_fixerror»
+kde@kde-f:~/Документы/[git]/branchapp$ git branch
+* lenin_fixerror
+  master
+kde@kde-f:~/Документы/[git]/branchapp$ echo "ver4" > index.html
+kde@kde-f:~/Документы/[git]/branchapp$ git add .
+kde@kde-f:~/Документы/[git]/branchapp$ git commit -m "version4.0"
+[lenin_fixerror 0d8e2c1] version4.0
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+kde@kde-f:~/Документы/[git]/branchapp$ git log
+commit 0d8e2c1f6131c6808416c3c54369625c1bf4071b (HEAD -> lenin_fixerror)
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:20:35 2020 +0300
+
+    version4.0
+
+commit d47aeb5c607a5a2dbc2fcb3ac6cc12d6f08c9e1e (master)
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:46 2020 +0300
+
+    version3.0
+
+commit a4ff584310066a42f12553bf8a45591b68e8d7e3
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:11 2020 +0300
+
+    version2.0
+
+commit f50ec192592cb58372bb9803a29ac125d0d921ba
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:13:18 2020 +0300
+
+    Version1.0
+kde@kde-f:~/Документы/[git]/branchapp$ git branch
+* lenin_fixerror
+  master
+kde@kde-f:~/Документы/[git]/branchapp$ type .\index.html
+bash: type: .index.html: не найден
+kde@kde-f:~/Документы/[git]/branchapp$ type index.html
+bash: type: index.html: не найден
+kde@kde-f:~/Документы/[git]/branchapp$ ls
+index.html
+kde@kde-f:~/Документы/[git]/branchapp$ cat index.html
+ver4
+kde@kde-f:~/Документы/[git]/branchapp$ Соединяеи вресию мастера с новой версией ленини фикс еррор
+Соединяеи: команда не найдена
+kde@kde-f:~/Документы/[git]/branchapp$ git merge lenin_fixerror
+Уже обновлено.
+kde@kde-f:~/Документы/[git]/branchapp$ git log
+commit 0d8e2c1f6131c6808416c3c54369625c1bf4071b (HEAD -> lenin_fixerror)
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:20:35 2020 +0300
+
+    version4.0
+
+commit d47aeb5c607a5a2dbc2fcb3ac6cc12d6f08c9e1e (master)
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:46 2020 +0300
+
+    version3.0
+
+commit a4ff584310066a42f12553bf8a45591b68e8d7e3
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:11 2020 +0300
+
+    version2.0
+
+commit f50ec192592cb58372bb9803a29ac125d0d921ba
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:13:18 2020 +0300
+
+    Version1.0
+...skipping...
+
+
+                   SUMMARY OF LESS COMMANDS
+
+      Commands marked with * may be preceded by a number, N.
+      Notes in parentheses indicate the behavior if N is given.
+      A key preceded by a caret indicates the Ctrl key; thus ^K is ctrl-K.
+
+  h  H                 Display this help.
+  q  :q  Q  :Q  ZZ     Exit.
+ ---------------------------------------------------------------------------
+
+                           MOVING
+
+  e  ^E  j  ^N  CR  *  Forward  one line   (or N lines).
+  y  ^Y  k  ^K  ^P  *  Backward one line   (or N lines).
+  f  ^F  ^V  SPACE  *  Forward  one window (or N lines).
+  b  ^B  ESC-v      *  Backward one window (or N lines).
+  z                 *  Forward  one window (and set window to N).
+  w                 *  Backward one window (and set window to N).
+  ESC-SPACE         *  Forward  one window, but don't stop at end-of-file.
+  d  ^D             *  Forward  one half-window (and set half-window to N).
+  u  ^U             *  Backward one half-window (and set half-window to N).
+  ESC-)  RightArrow *  Right one half screen width (or N positions).
+HELP -- Press RETURN for more, or q when done...skipping...
+commit 0d8e2c1f6131c6808416c3c54369625c1bf4071b (HEAD -> lenin_fixerror)
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:20:35 2020 +0300
+
+    version4.0
+
+commit d47aeb5c607a5a2dbc2fcb3ac6cc12d6f08c9e1e (master)
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:46 2020 +0300
+
+    version3.0
+
+commit a4ff584310066a42f12553bf8a45591b68e8d7e3
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:11 2020 +0300
+
+    version2.0
+
+commit f50ec192592cb58372bb9803a29ac125d0d921ba
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:13:18 2020 +0300
+
+    Version1.0
+kde@kde-f:~/Документы/[git]/branchapp$ git checkout master
+Переключено на ветку «master»
+kde@kde-f:~/Документы/[git]/branchapp$ git merge lenin_fixerror
+Обновление d47aeb5..0d8e2c1
+Fast-forward
+ index.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+kde@kde-f:~/Документы/[git]/branchapp$ git log
+commit 0d8e2c1f6131c6808416c3c54369625c1bf4071b (HEAD -> master, lenin_fixerror)
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:20:35 2020 +0300
+
+    version4.0
+
+commit d47aeb5c607a5a2dbc2fcb3ac6cc12d6f08c9e1e
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:46 2020 +0300
+
+    version3.0
+
+commit a4ff584310066a42f12553bf8a45591b68e8d7e3
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:11 2020 +0300
+
+    version2.0
+
+commit f50ec192592cb58372bb9803a29ac125d0d921ba
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:13:18 2020 +0300
+
+    Version1.0
+kde@kde-f:~/Документы/[git]/branchapp$ car index.html
+
+Command 'car' not found, but can be installed with:
+
+sudo apt install ucommon-utils
+
+kde@kde-f:~/Документы/[git]/branchapp$ cat index.html
+ver4
+kde@kde-f:~/Документы/[git]/branchapp$ git branch -d lenin_fixerror
+Ветка lenin_fixerror удалена (была 0d8e2c1).
+kde@kde-f:~/Документы/[git]/branchapp$ git log
+commit 0d8e2c1f6131c6808416c3c54369625c1bf4071b (HEAD -> master)
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:20:35 2020 +0300
+
+    version4.0
+
+commit d47aeb5c607a5a2dbc2fcb3ac6cc12d6f08c9e1e
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:46 2020 +0300
+
+    version3.0
+
+commit a4ff584310066a42f12553bf8a45591b68e8d7e3
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:15:11 2020 +0300
+
+    version2.0
+
+commit f50ec192592cb58372bb9803a29ac125d0d921ba
+Author: Mirpribili <mirpribili@ya.ru>
+Date:   Mon Jun 15 09:13:18 2020 +0300
+
+    Version1.0
+
+
+
+
+
+
+
+
+
+
+
+https://www.youtube.com/watch?v=4CSumcSLR14&list=PLg5SS_4L6LYstwxTEOU05E0URTHnbtA0l&index=11
+
+Просто о SOLID (Принципы ООП)
+https://www.youtube.com/watch?v=A6wEkG4B38E
+https://www.youtube.com/watch?v=47-F0wGz-Vk
+
+https://www.youtube.com/channel/UClJzWfGWuGJL2t-3dYKcHTA/playlists
+
+https://www.youtube.com/watch?v=qZP9n3Yxc0o
+https://www.youtube.com/watch?v=LO61F07s7gw
+https://www.youtube.com/watch?v=w8O6apM3aBw
+https://www.youtube.com/watch?v=C6S3dMt1s_M
+https://www.youtube.com/watch?v=4IWiANPxMd0&list=PLWjuvM2FXeaF72qDh1ETRyUSBu6MdjqNN
+https://www.youtube.com/watch?v=spF2lRj5JLk&list=PLa9lO_Eq-vZVusZYUe3tcfZ3jgxZ21BTJ
+https://www.youtube.com/watch?v=spF2lRj5JLk&list=PLa9lO_Eq-vZWd4jBhGzKjFRXcOAx7uEJF
+
+
