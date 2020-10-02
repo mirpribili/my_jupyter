@@ -16,3 +16,21 @@ su kde -c "jupyter lab --config=/location/of/your/config/file/.jupyter/jupyter_n
 
 jupyter notebook
 jupyter lab
+
+
+
+# something add for autostart
+ mkdir $HOME/.config/autostart
+ cd $HOME/.config/autostart/
+ nano file.desktop
+
+    [Desktop Entry]
+    Type=Application
+    Exec=cd $HOME/jupyter/my_jupyter; jupyter lab
+    Hidden=false
+    NoDisplay=false
+    X-GNOME-Autostart-enabled=true
+    Name=jupyter lab
+    Comment=
+    RunHook=0
+
