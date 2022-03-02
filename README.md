@@ -1,5 +1,5 @@
 # my_jupyter
-## jupyter notebook
+## conda activate;jupyter notebook
 ## cd $HOME/jupyter/my_jupyter/; jupyter lab
 
 - sudo iptables -t mangle -A POSTROUTING -j TTL --ttl-set 65
